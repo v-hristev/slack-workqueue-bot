@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Debug TypeScript",
+        "preLaunchTask": "tsc: build - tsconfig.json",
+        "program": "${workspaceFolder}/dist/app.js",  // Path to the compiled JS
+        "outFiles": ["${workspaceFolder}/dist/**/*.js"], // Watch the compiled JS files
+        "sourceMaps": true,  // Enable source maps for TypeScript
+        "console": "integratedTerminal"
+      }
+    ]
+  }
+  
