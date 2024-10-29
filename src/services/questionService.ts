@@ -1,19 +1,27 @@
-import Question from "../models/question";
+import Question, { QuestionType } from "../models/question";
 import questionRepository from "../repositories/questionRepository";
 
 export class QuestionService {
-    async createQuestion(channelId: number, text: string, fullText: string, messageLink: string, type: number, messageTs: string): Promise<Question> {
-        if (text.length > 50) {
+    async createQuestion(channelId: number, text: string, fullText: string, messageLink: string, type: number, messageTs: string): Promise<[Question, boolean]> {
+        if (type === QuestionType.Q && text.length > 100) {
             fullText = text;
-            text = text.substring(0, 50) + "...";
+            text = text.substring(0, 100) + "...";
+        }
+        const existingQuestion = await this.getQuestionByText(text);
+        if (existingQuestion) {
+            return [existingQuestion, false];
         }
         const user = new Question(0, channelId, text, fullText, messageLink, type, messageTs, null);
         const question = await questionRepository.create(user);
-        return question;
+        return [question, true];
     }
 
     async getQuestionById(id: number): Promise<Question | null> {
         return await questionRepository.findById(id);
+    }
+
+    async getQuestionByText(text: string): Promise<Question | null> {
+        return await questionRepository.findByText(text);
     }
 
     async getQuestionByMessageTs(messageTs: string): Promise<Question | null> {

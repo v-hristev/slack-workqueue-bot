@@ -89,11 +89,11 @@ async function saveQuestion(value: string, message: any, say: any, questionType:
 
     const permalink = permalinkResponse?.permalink || "";
     const channel = await channelService.getOrCreateChannelByName(message.channel);
-    const question = await questionService.createQuestion(channel.id, value, "", permalink, questionType, message.ts);
+    const [question, isNew] = await questionService.createQuestion(channel.id, value, "", permalink, questionType, message.ts);
 
     await say({
-        text: `*${QuestionType[questionType]}${question.id}*: ${question.text}`,
-        thread_ts: message.thread_ts || message.ts
+        text: isNew ? `*${QuestionType[questionType]}${question.id}*: ${question.text}` : generateMessage(question),
+        thread_ts: isNew ? message.thread_ts || message.ts : null
     });
 }
 

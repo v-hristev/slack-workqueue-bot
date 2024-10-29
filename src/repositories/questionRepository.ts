@@ -11,7 +11,7 @@ export class QuestionRepository {
             CREATE TABLE IF NOT EXISTS questions (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 channelId INTEGER NOT NULL,
-                text TEXT NOT NULL,
+                text TEXT NOT NULL UNIQUE,
                 fullText TEXT NOT NULL,
                 messageLink TEXT NOT NULL,
                 type INTEGER NOT NULL,
@@ -52,6 +52,22 @@ export class QuestionRepository {
         return new Promise((resolve, reject) => {
             const query = `SELECT * FROM questions WHERE id = ?`;
             db.get(query, [id], (err, row: Question) => {
+                if (err) {
+                    reject(err);
+                } else if (row) {
+                    resolve(new Question(row.id, row.channelId, row.text, row.fullText, row.messageLink, row.type, row.messageTs, null));
+                } else {
+                    resolve(null);
+                }
+            });
+        });
+    }
+
+    // Find a question by Text
+    public findByText(text: string): Promise<Question | null> {
+        return new Promise((resolve, reject) => {
+            const query = `SELECT * FROM questions WHERE text = ?`;
+            db.get(query, [text], (err, row: Question) => {
                 if (err) {
                     reject(err);
                 } else if (row) {

@@ -17,6 +17,7 @@
     "typescript-eslint": "^8.12.0"
   },
   "scripts": {
+    "ngrok": "ngrok http http://localhost:3000",
     "build": "tsc",
     "start": "node ./bin/app.js",
     "dev": "npx nodemon ./src/app.ts",
