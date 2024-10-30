@@ -58,12 +58,6 @@ A Slack bot application built using [Bolt](https://tools.slack.dev/bolt-js/) to 
 - **Bounce for Further Discussion**: Use `!wbounce <question_id>` to keep the entry in the queue but flagged for further discussion.
 - **Check Queue Status**: Use `!w` to view the list of all active questions and PRs.
 
-## File Structure
-
-- **`index.ts`**: Main app logic for handling Slack messages, commands, and integrations with GitHub.
-- **`services`**: Contains services for managing channels and questions.
-- **`models`**: Defines models for questions, including types like `PR` and `Q`.
-
 ## License
 
 This project is open-source and available under the [MIT License](LICENSE).
