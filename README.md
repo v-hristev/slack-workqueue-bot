@@ -1,5 +1,5 @@
 # Slack Work Queue Bot
-
+ 
 A Slack bot application built using [Bolt](https://tools.slack.dev/bolt-js/) to help manage questions and pull request (PR) queues within a Slack workspace. The bot processes specific commands to add, list, and remove questions or PRs, and provides a summary of pull requests by fetching details from GitHub.
 
 ## Features
