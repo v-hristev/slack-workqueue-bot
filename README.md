@@ -25,18 +25,26 @@ A Slack bot application built using [Bolt](https://tools.slack.dev/bolt-js/) to 
 
 ## Setup and Installation
 
-1. **Clone the Repository**:
+1. **Create a new Slack App**
+- Go to https://api.slack.com/apps
+- Click **Create App**
+- Choose a workspace
+- Enter App Manifest using contents of `manifest.yaml`
+- Click **Create**
+- Once the app is created click **Install to Workspace** Then scroll down in Basic Info and click **Generate Token and Scopes** with both scopes
+
+2. **Clone the Repository**:
    ```bash
    git clone https://github.com/your-repo/slack-queue-bot.git
    cd workqueue-slack-bot
    ```
 
-2. **Install Dependencies**:
+3. **Install Dependencies**:
    ```bash
    npm install
    ```
 
-3. **Environment Variables**:
+4. **Environment Variables**:
    Configure environment variables by creating a `.env` file in the root directory and setting:
    ```plaintext
    SLACK_BOT_TOKEN=your-slack-bot-token
@@ -45,9 +53,10 @@ A Slack bot application built using [Bolt](https://tools.slack.dev/bolt-js/) to 
    PORT=3000
    ```
 
-4. **Run the Bot**:
+5. **Run the Bot**:
    ```bash
-   npm start
+   npm run ngrok
+   npm run dev
    ```
 
 ## Usage
